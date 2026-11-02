@@ -1,0 +1,15 @@
+# Configuracao do deploy no Render (https://render.com)
+# As variaveis DB_URL, DB_USUARIO e DB_SENHA devem ser preenchidas no painel do Render.
+services:
+  - type: web
+    name: soulmove-api
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: DB_URL
+        sync: false
+      - key: DB_USUARIO
+        sync: false
+      - key: DB_SENHA
+        sync: false

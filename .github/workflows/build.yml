@@ -1,0 +1,36 @@
+name: Build da API
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+
+      - name: Compilar e empacotar
+        run: mvn -B clean package -DskipTests
+
+      - name: Subir a API com H2 e testar os endpoints
+        run: |
+          java -jar target/soulmove-api.jar &
+          for i in $(seq 1 30); do
+            curl -s http://localhost:8080/ && break
+            sleep 2
+          done
+          bash testes/testar_api.sh http://localhost:8080
+
+      - name: Guardar o jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: soulmove-api
+          path: target/soulmove-api.jar
