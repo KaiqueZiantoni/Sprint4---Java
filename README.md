@@ -6,7 +6,7 @@ API REST em Spring Boot do SoulMove: cadastro de usuários, meios de transporte
 (ônibus e metrô) e viagens, com cálculo de CO₂ evitado e Pontos Soul Up.
 
 - Documentação completa: `docs/Documentacao_SoulMove_Sprint4.pdf`
-- Deploy: _(preencher com a URL do Render após publicar)_
+- Deploy: https://sprint4-java-g3jw.onrender.com
 
 ## Como rodar
 
